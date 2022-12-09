@@ -1,7 +1,12 @@
 import React from 'react'
+import congratulation from "../../../public/images/congratulation.gif"
+// import waves from "../../../public/images/waves.gif"
 
 export const Congratulation = () => {
-  return (
-    <div>Congratulation</div>
-  )
+  return <>
+    {setTimeout(() => {
+      window.location.href = "https://google.com"
+    }, [5000])}
+    <img src={congratulation} width={400} height={400} />
+  </>
 }

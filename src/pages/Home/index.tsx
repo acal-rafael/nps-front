@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { Buttons } from '../../components/Buttons'
+import { Buttons } from '../../components/Buttons';
+import { Content } from '../../components/Content';
+
 import { Congratulation } from '../Congratulation';
 
 
@@ -12,14 +14,13 @@ export interface IHomeProps {
 
 export const Home = () => {
 
-  const [ nota, setNota ] = useState<IHomeProps>();
+  const [nota, setNota] = useState<IHomeProps>();
 
   useEffect(() => {
     console.log("Nota: ", nota);
   }, [nota])
 
-
-  const cores  = [
+  const cores = [
     "#B72027",
     "#D42127",
     "#F25222",
@@ -33,27 +34,43 @@ export const Home = () => {
     "#65B74B"
   ]
 
-  return <div
-    className='
-      flex flex-row flex-wrap
-      justify-center content-center
-      
-      border-black 
-      border-[1px] 
-    '
-  >
-    {nota !== undefined 
-      ? <Congratulation /> 
-      : <>
-        {cores.map((cor: string, index: number) => 
-          <Buttons 
-            key={index}
-            cor={cor} 
-            nota={String(index)} 
-            setNota={setNota} 
-          />
-        )}
-      </>
-    } 
-  </div>
+  return <>
+    {
+      nota !== undefined
+        ? <Navigate to="/feedback" replace={true} />
+        : <>
+          <div
+            className='
+              w-[80%]
+                flex flex-row flex-wrap
+                //justify-center //content-center
+                border-black
+                border-[1px]
+              '
+          >
+            <Content />
+          </div>
+
+          <div
+            className='
+                w-[80%]
+                flex flex-row flex-wrap
+                justify-center content-center
+
+                border-red-700 
+                border-[1px] 
+              '
+          >
+            {cores.map((cor: string, index: number) =>
+              <Buttons
+                key={index}
+                cor={cor}
+                nota={String(index)}
+                setNota={setNota}
+              />
+            )}
+          </div>
+        </>
+    }
+  </>
 }
