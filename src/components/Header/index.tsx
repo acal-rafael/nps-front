@@ -5,7 +5,10 @@ export const Header = () => {
   let cliente = "Fulano"
 
   return (
+
     <div
+
+
       className='
         w-[80%]
         m-auto
@@ -14,8 +17,8 @@ export const Header = () => {
         flex-row
         justify-between
 
-        border-black
-        border-[1px]
+        //border-black
+        //border-[1px]
 
         //bg-waves-top
         //bg-cover
@@ -25,7 +28,7 @@ export const Header = () => {
       '
     >
       <p>Logo da Acal</p>
-      <p>Olá, {cliente}, seja bem vindo!</p>
+      <p>Olá {cliente}, seja bem vindo!</p>
     </div>
   )
 }

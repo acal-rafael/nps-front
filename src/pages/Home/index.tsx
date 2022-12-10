@@ -44,8 +44,8 @@ export const Home = () => {
               w-[80%]
                 flex flex-row flex-wrap
                 //justify-center //content-center
-                border-black
-                border-[1px]
+                //border-black
+                //border-[1px]
               '
           >
             <Content />
@@ -57,8 +57,8 @@ export const Home = () => {
                 flex flex-row flex-wrap
                 justify-center content-center
 
-                border-red-700 
-                border-[1px] 
+                //border-red-700 
+                //border-[1px] 
               '
           >
             {cores.map((cor: string, index: number) =>

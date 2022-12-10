@@ -14,8 +14,8 @@ export const Footer = () => {
       justify-center
       content-center
 
-      border-black
-      border-[1px]
+      //border-black
+      //border-[1px]
       '
     >
 

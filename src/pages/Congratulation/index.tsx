@@ -6,7 +6,7 @@ export const Congratulation = () => {
   return <>
     {setTimeout(() => {
       window.location.href = "https://google.com"
-    }, [5000])}
+    }, 5000)}
     <img src={congratulation} width={400} height={400} />
   </>
 }
