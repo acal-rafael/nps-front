@@ -3,18 +3,24 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Body } from '../components/Body'
 
-import { Home } from '../pages/Home'
+import { Question } from '../pages/Question'
 import { Feedback } from '../pages/Feedback'
 import { Congratulation } from '../pages/Congratulation'
 import { DivCircleInto } from '../pages/Teste/DivCircleInto'
 import { Teste } from '../pages/Teste'
+import { Home } from '../pages/Home'
 
 export const Router = () => {
 
   return (
     <Routes>
-      <Route path='/:urlhash' element={<Body>
+      <Route path='/' element={<Body>
         <Home />
+      </Body>}
+      />
+
+      <Route path='/nps' element={<Body>
+        <Question />
       </Body>}
       />
 
