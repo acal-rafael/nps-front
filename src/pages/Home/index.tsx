@@ -242,12 +242,18 @@ export const Home = () => {
             text-xl
             p-4
             border-[2px]
-            hover:transition
-            hover:ease-in
-            hover:delay-100
+
+            //hover:transition
+            //hover:ease-in
+            //hover:delay-100
+
+            bg-[#0096D5]
             border-[#0096D5]
-            hover:bg-[#0096D5]
-            hover:text-gray-50
+            text-white
+            outline-none
+            
+            //hover:bg-[#0096D5]
+            //hover:text-gray-50
             rounded-xl
             
           `}
@@ -264,8 +270,8 @@ export const Home = () => {
             
             border-[2px]
 
-            bg-[#dfdfdf]
-            text-gray-400
+            //bg-[#dfdfdf]
+            //text-gray-400
 
             hover:transition
             hover:ease-in
