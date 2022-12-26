@@ -16,13 +16,13 @@ export interface IQuestionProps {
 
 export const Question = () => {
 
+  const navigate = useNavigate();
   const [notaClicada, setNotaClicada] = useState<IQuestionProps | any>();
   const { ipServer, setNota } = useContext(UserContext);
 
   useEffect(() => {
     console.log("Nota: ", notaClicada);
     setNota(notaClicada);
-
   }, [notaClicada])
 
   const cores = [
@@ -42,7 +42,8 @@ export const Question = () => {
   return <>
     {
       notaClicada !== undefined
-        ? <Navigate to="/feedback" replace={true} />
+        // ? <Navigate to="/feedback" replace={true} />
+        ? navigate('/feedback')
         : <>
           <div
             className='
