@@ -12,6 +12,11 @@ export const Home = () => {
 
   const activarDesativarBotao = (ip: string) => {
     if (parseInt(ip) !== 1 && parseInt(ip) !== 0) {
+      if (ip.length === 0) {
+        setMostraBotao(prev => prev = false);
+        return;
+      }
+
       if (parseInt(ip) >= 254) {
         setMostraBotao(prev => prev = false);
         return;
@@ -22,21 +27,6 @@ export const Home = () => {
     setMostraBotao(prev => prev = false);
     return;
   }
-
-
-  // const activarDesativarBotao = () => {
-  //   if (numFilial !== "0") {
-  //     if (ipServidorNps.length === 7 && parseInt(ipCaixa) > 0) {
-  //       // if (ipCaixa !== "0") {
-  //       setMostraBotao(prev => !prev);
-  //       // }
-  //     } else if (ipServidorNps.length === 8 && parseInt(ipCaixa) > 0) {
-  //       // if (ipCaixa !== "0") {
-  //       setMostraBotao(prev => !prev);
-  //       // }
-  //     }
-  //   }
-  // }
 
   const focusIpCaixa = () => {
     setAlteraLabel(prev => prev = true)
@@ -98,6 +88,8 @@ export const Home = () => {
   console.log("Numero de IP do servidor: ", ipServidorNps)
   console.log("Tamanho do IP do servidor: ", ipServidorNps.length)
   console.log("IP do caixa: ", ipCaixa);
+  console.log("IP do caixa TAMANHO: ", ipCaixa.length);
+  console.log("IP do caixa TYPE: ", typeof ipCaixa);
 
   return (
     <div
@@ -191,9 +183,9 @@ export const Home = () => {
                         transition
                         ease-in-out
                         delay-200
-                        -translate-y-[1.5rem]
+                        -translate-y-[1.450rem]
                         bg-white
-
+                        text-[0.800rem]
                       `
 
                 }
