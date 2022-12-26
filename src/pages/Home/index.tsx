@@ -13,8 +13,6 @@ export const Home = () => {
 
   const { ipServer, setIpServer } = useContext(UserContext);
 
-
-
   const activarDesativarBotao = (ip: string) => {
     if (parseInt(ip) !== 1 && parseInt(ip) !== 0) {
       if (ip.length === 0) {
@@ -167,7 +165,7 @@ export const Home = () => {
         </div>
 
         {numFilial !== "0"
-          ?
+          &&
           <div
             className='
                 flex
@@ -231,13 +229,13 @@ export const Home = () => {
               size={6}
             />
           </div>
-          : undefined
+          // : undefined
         }
       </div>
       <hr />
 
       {mostraBotao
-        ? <Link
+        && <Link
           className={`
             w-[100%]
             text-center
@@ -259,39 +257,39 @@ export const Home = () => {
             rounded-xl
             
           `}
-          to='/nps'
+          to='/sliders'
         >
           Iniciar App Slide
         </Link>
-        : <Link
-          className={`
-            w-[100%]
-            text-center
-            text-xl
-            p-4
+        // : <Link
+        //   className={`
+        //     w-[100%]
+        //     text-center
+        //     text-xl
+        //     p-4
             
-            border-[2px]
+        //     border-[2px]
 
-            //bg-[#dfdfdf]
-            //text-gray-400
+        //     //bg-[#dfdfdf]
+        //     //text-gray-400
 
-            hover:transition
-            hover:ease-in
-            hover:delay-100
-            border-gray-400
-            //hover:bg-[#3d3f41]
-            //hover:text-gray-50
-            rounded-xl
+        //     hover:transition
+        //     hover:ease-in
+        //     hover:delay-100
+        //     border-gray-400
+        //     //hover:bg-[#3d3f41]
+        //     //hover:text-gray-50
+        //     rounded-xl
             
-          `}
-          to='/nps'
-          onClick={e => {
-            e.preventDefault()
-            alert("Falta colocar IP do Caixa!!!")
-          }}
-        >
-          Iniciar App Slide
-        </Link>
+        //   `}
+        //   to='/'
+        //   onClick={e => {
+        //     e.preventDefault()
+        //     alert("Falta colocar IP do Caixa!!!")
+        //   }}
+        // >
+        //   Iniciar App Slide
+        // </Link>
       }
       {/* <p>IP para conexão WebSocket: {ipServidorNps}</p> */}
     </div>

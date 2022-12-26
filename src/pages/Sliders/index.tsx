@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 
 export const Sliders = () => {
 
+  const [goPage, setGoPage] = useState<boolean>(false)
   // const location = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setInterval(() => {
+      setGoPage(prev => !prev);
+    }, 2000) 
+  }, [])
+
+
   return (
     <div>
-      
-      {setInterval(() => {
-        // () => <Navigate to="nps" replace={true} />
-        navigate('/nps')
-      }, 5000)}
-        
-          
-      Sliders
+    
+      <p>Sliders</p>
+      {goPage && <Navigate to="/nps" replace={true} />}
 
     </div>
   )
