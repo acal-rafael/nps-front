@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { Buttons } from '../../components/Buttons';
@@ -6,19 +6,24 @@ import { Content } from '../../components/Content';
 
 import { Congratulation } from '../Congratulation';
 
+import { UserContext } from '../../contextApp/userContext';
+
 
 export interface IQuestionProps {
-  nota: string;
-  setNota: React.Dispatch<React.SetStateAction<string>>
+  notaClicada: string;
+  setNotaClicada: React.Dispatch<React.SetStateAction<string | any>>
 }
 
 export const Question = () => {
 
-  const [nota, setNota] = useState<IQuestionProps>();
+  const [notaClicada, setNotaClicada] = useState<IQuestionProps | any>();
+  const { ipServer, setNota } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("Nota: ", nota);
-  }, [nota])
+    console.log("Nota: ", notaClicada);
+    setNota(notaClicada);
+
+  }, [notaClicada])
 
   const cores = [
     "#B72027",
@@ -36,7 +41,7 @@ export const Question = () => {
 
   return <>
     {
-      nota !== undefined
+      notaClicada !== undefined
         ? <Navigate to="/feedback" replace={true} />
         : <>
           <div
@@ -50,7 +55,7 @@ export const Question = () => {
           >
             <Content />
           </div>
-
+          {/* <h3>{ipServer}</h3> */}
           <div
             className='
                 w-[80%]
@@ -65,8 +70,8 @@ export const Question = () => {
               <Buttons
                 key={index}
                 cor={cor}
-                nota={String(index)}
-                setNota={setNota}
+                notaClicada={String(index)}
+                setNotaClicada={setNotaClicada}
               />
             )}
           </div>

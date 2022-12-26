@@ -10,40 +10,46 @@ import { DivCircleInto } from '../pages/Teste/DivCircleInto'
 import { Teste } from '../pages/Teste'
 import { Home } from '../pages/Home'
 
+import { ProviderContext } from '../contextApp/userContext'
+
 export const Router = () => {
 
   return (
-    <Routes>
-      <Route path='/' element={<Body>
-        <Home />
-      </Body>}
-      />
 
-      <Route path='/nps' element={<Body>
-        <Question />
-      </Body>}
-      />
+    <ProviderContext>
+      <Routes>
+        <Route path='/' element={<Body>
+          <Home />
+        </Body>}
+        />
 
-      <Route path='/feedback' element={<Body>
-        <Feedback />
-      </Body>}
-      />
+        <Route path='/nps' element={<Body>
+          <Question />
+        </Body>}
+        />
 
-      <Route path='/congratulation' element={<Body>
-        <Congratulation />
-      </Body>}
-      />
+        <Route path='/feedback' element={<Body>
+          <Feedback />
+        </Body>}
+        />
 
-      {/* Routes of the test UI */}
-      <Route path='/teste' element={<Teste />} />
-      <Route path='/div-circle-into' element={<DivCircleInto />} />
+        <Route path='/congratulation' element={<Body>
+          <Congratulation />
+        </Body>}
+        />
 
-      {/* Route of the page not found */}
-      <Route path='/*' element={<Body>
-        <h2>Pagina nao encontrada</h2>
-      </Body>}
-      />
+        {/* Routes of the test UI */}
+        <Route path='/teste' element={<Teste />} />
+        <Route path='/div-circle-into' element={<DivCircleInto />} />
 
-    </Routes>
+        {/* Route of the page not found */}
+        <Route path='/*' element={<Body>
+          <h2>Pagina nao encontrada</h2>
+        </Body>}
+        />
+
+      </Routes>
+    </ProviderContext>
+
   )
 }

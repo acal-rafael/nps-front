@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
+
+import { UserContext } from '../../contextApp/userContext';
 
 export const Home = () => {
   const [ipCaixa, setIpCaixa] = useState<string>("")
@@ -8,6 +10,9 @@ export const Home = () => {
   const [alteraLabel, setAlteraLabel] = useState<boolean>(false);
   const [ipServidorNps, setIpServidorNps] = useState<string>("10.1.0.0");
   const [mostraBotao, setMostraBotao] = useState<boolean>(false);
+
+  const { ipServer, setIpServer } = useContext(UserContext);
+
 
 
   const activarDesativarBotao = (ip: string) => {
@@ -83,6 +88,10 @@ export const Home = () => {
     // activarDesativarBotao();
   }, [numFilial, ipCaixa])
 
+  useEffect(() => {
+    setIpServer(ipServidorNps);
+  }, [ipServidorNps])
+
 
   console.log("Numero da filial: ", numFilial)
   console.log("Numero de IP do servidor: ", ipServidorNps)
@@ -90,6 +99,7 @@ export const Home = () => {
   console.log("IP do caixa: ", ipCaixa);
   console.log("IP do caixa TAMANHO: ", ipCaixa.length);
   console.log("IP do caixa TYPE: ", typeof ipCaixa);
+  console.log("### IpServer Context: ", ipServer);
 
   return (
     <div
