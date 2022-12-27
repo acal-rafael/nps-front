@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { SetStateAction, useContext, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Header } from '../../components/Header';
@@ -7,31 +7,44 @@ import { FeedbackResponse } from '../../components/FeedbackResponse';
 import { UserContext } from '../../contextApp/userContext';
 
 interface IRespostas {
+  id: number;
   msg: string;
   color: string;
 }[]
 
+
+interface IDivRespostas<T> {
+  divRespostas?: string;
+  setDivRespostas: React.Dispatch<SetStateAction<T>>;
+}[];
 
 
 export const Feedback = () => {
 
   const { nota, ipServer } = useContext(UserContext);
   
-  const [areaRespostas, setAreaRespostas] = useState<[]>([])
+  const [divRespostas, setDivRespostas] = useState<IDivRespostas<string>>()
   const [respostas, setRespostas] = useState<IRespostas[]>(
     [
-      {msg: "Ambiente agradável", color: "blue"},
-      {msg: "Ótimo atendimento", color : "green"},
-      {msg: "Nâo gostei do atendimento", color: "brown"},
-      {msg: "Ótimas promoções", color: "gray"},
-      {msg: "Gostei da recepção", color : "green"},
-      {msg: "Rapidez no caixa", color: "cyan"},
+      {id: 1, msg: "Ambiente agradável", color: "blue"},
+      {id: 2, msg: "Ótimo atendimento", color : "green"},
+      {id: 3, msg: "Nâo gostei do atendimento", color: "brown"},
+      {id: 4, msg: "Ótimas promoções", color: "gray"},
+      {id: 5, msg: "Gostei da recepção", color : "green"},
+      {id: 6, msg: "Rapidez no caixa", color: "cyan"},
     ]
   )
 
 
-  // const location = useLocation();
-  // const navigate = useNavigate();
+  const adicionaDivRespostas = (id: number) => {
+    let resp = respostas.filter(resposta => resposta.id == id);
+    console.log(resp);
+    console.log(typeof resp);
+
+    setDivRespostas( resp[0].msg)
+
+    // setDivRespostas(resp.);
+  }
 
   return (  
     <div 
@@ -72,7 +85,7 @@ export const Feedback = () => {
         <br />
         <h2>Ip: {ipServer}</h2>
         {
-          respostas.map((resp, index) => <FeedbackResponse key={index}
+          respostas.map((resp) => <FeedbackResponse key={resp.id}
                 className={`
                   border-[1px]
                   rounded-xl
@@ -89,7 +102,7 @@ export const Feedback = () => {
                 
                 feed={resp.msg} 
 
-                onClick={()=> alert("Clicado!")}
+                onClick={()=> adicionaDivRespostas(resp.id)}
               />
             )
         }
