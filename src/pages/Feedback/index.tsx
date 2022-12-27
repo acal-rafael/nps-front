@@ -20,9 +20,12 @@ export const Feedback = () => {
   const [areaRespostas, setAreaRespostas] = useState<[]>([])
   const [respostas, setRespostas] = useState<IRespostas[]>(
     [
-      {msg: "Nada", color: "red" },
-      {msg: "Otimo atendimento", color : "green"},
-      {msg: "Atraso no atendimento", color: "brown" },
+      {msg: "Ambiente agradável", color: "blue"},
+      {msg: "Ótimo atendimento", color : "green"},
+      {msg: "Nâo gostei do atendimento", color: "brown"},
+      {msg: "Ótimas promoções", color: "gray"},
+      {msg: "Gostei da recepção", color : "green"},
+      {msg: "Rapidez no caixa", color: "cyan"},
     ]
   )
 
@@ -37,8 +40,11 @@ export const Feedback = () => {
         flex-col
       '
     >
-      <textarea 
+      <div 
         className='
+          w-100
+          h-[300px]
+          mb-8
           border-[1px]
           border-sky-400
           rounded-2xl
@@ -52,10 +58,8 @@ export const Feedback = () => {
         '
         
 
-        cols={150} 
-        rows={10}
       >
-      </textarea>
+      </div>
 
       <div 
         className='
