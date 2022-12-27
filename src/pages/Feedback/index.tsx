@@ -13,47 +13,55 @@ interface IRespostas {
 }[]
 
 
-interface IDivRespostas<T> {
-  divRespostas?: string;
-  setDivRespostas: React.Dispatch<SetStateAction<T>>;
-}[];
+// interface IDivRespostas<T> {
+//   divRespostas?: string;
+//   setDivRespostas: React.Dispatch<SetStateAction<T>>;
+// }[];
+
+interface IArrString extends String {
+  msg: string;
+  setMsg: React.Dispatch<SetStateAction<string>>;
+}[]
 
 
 export const Feedback = () => {
 
   const { nota, ipServer } = useContext(UserContext);
-  
-  const [divRespostas, setDivRespostas] = useState<IDivRespostas<string>>()
+
+  const [divRespostas, setDivRespostas] = useState<string[]>([]);
   const [respostas, setRespostas] = useState<IRespostas[]>(
     [
-      {id: 1, msg: "Ambiente agradável", color: "blue"},
-      {id: 2, msg: "Ótimo atendimento", color : "green"},
-      {id: 3, msg: "Nâo gostei do atendimento", color: "brown"},
-      {id: 4, msg: "Ótimas promoções", color: "gray"},
-      {id: 5, msg: "Gostei da recepção", color : "green"},
-      {id: 6, msg: "Rapidez no caixa", color: "cyan"},
+      { id: 1, msg: "Ambiente agradável", color: "blue" },
+      { id: 2, msg: "Ótimo atendimento", color: "green" },
+      { id: 3, msg: "Não gostei do atendimento", color: "brown" },
+      { id: 4, msg: "Ótimas promoções", color: "gray" },
+      { id: 5, msg: "Gostei da recepção", color: "green" },
+      { id: 6, msg: "Rapidez no caixa", color: "cyan" },
     ]
   )
 
 
   const adicionaDivRespostas = (id: number) => {
-    let resp = respostas.filter(resposta => resposta.id == id);
-    console.log(resp);
-    console.log(typeof resp);
+    let { msg } = respostas.filter(resposta => resposta.id == id)[0];
+    // console.log(resp);
+    // console.log(typeof resp);
 
-    setDivRespostas( resp[0].msg)
+    // let { msg } = resp[0];
+    msg = msg.concat(", ");
+
+    setDivRespostas(prevMsg => [...prevMsg, msg])
 
     // setDivRespostas(resp.);
   }
 
-  return (  
-    <div 
+  return (
+    <div
       className='
         flex
         flex-col
       '
     >
-      <div 
+      <div
         className='
           w-100
           h-[300px]
@@ -61,6 +69,8 @@ export const Feedback = () => {
           border-[1px]
           border-sky-400
           rounded-2xl
+          text-4xl
+
           //focus:outline-sky-500
           focus:outline-none
           //focus:border-none
@@ -69,12 +79,13 @@ export const Feedback = () => {
         focus:shadow-sky-500
 
         '
-        
+
 
       >
+        {divRespostas.map(respostas => respostas)}
       </div>
 
-      <div 
+      <div
         className='
           flex
           gap-4
@@ -86,7 +97,7 @@ export const Feedback = () => {
         <h2>Ip: {ipServer}</h2>
         {
           respostas.map((resp) => <FeedbackResponse key={resp.id}
-                className={`
+            className={`
                   border-[1px]
                   rounded-xl
                   p-2
@@ -94,17 +105,17 @@ export const Feedback = () => {
                   hover:cursor-pointer
 
                 `}
-                
-                style={{
-                  backgroundColor: `${resp.color}`,
-                  color: "white"
-                }}  
-                
-                feed={resp.msg} 
 
-                onClick={()=> adicionaDivRespostas(resp.id)}
-              />
-            )
+            style={{
+              backgroundColor: `${resp.color}`,
+              color: "white"
+            }}
+
+            feed={resp.msg}
+
+            onClick={() => adicionaDivRespostas(resp.id)}
+          />
+          )
         }
       </div>
     </div>
@@ -115,4 +126,3 @@ export const Feedback = () => {
 
 
 
-   
