@@ -17,6 +17,8 @@ interface IUserContext {
   setPedido: React.Dispatch<React.SetStateAction<string>>;
   ipServer: string;
   setIpServer: React.Dispatch<React.SetStateAction<string>>;
+  connect: boolean;
+  setConnect: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IProviderContext {
@@ -40,6 +42,8 @@ export const UserContext = createContext<IUserContext>({
   setPedido: () => { },
   ipServer: "",
   setIpServer: () => { },
+  connect: false,
+  setConnect: () => { },
 });
 
 export function ProviderContext({ children }: IProviderContext) {
@@ -51,6 +55,7 @@ export function ProviderContext({ children }: IProviderContext) {
   const [nota, setNota] = useState<string>("");
   const [pedido, setPedido] = useState<string>("");
   const [ipServer, setIpServer] = useState<string>("");
+  const [connect, setConnect] = useState<boolean>(false);
 
   return <UserContext.Provider
     value={{
@@ -62,6 +67,7 @@ export function ProviderContext({ children }: IProviderContext) {
       nota, setNota,
       pedido, setPedido,
       ipServer, setIpServer,
+      connect, setConnect,
     }}
   >
     {children}

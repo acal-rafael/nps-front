@@ -5,6 +5,7 @@ import { Header } from '../../components/Header';
 import { FeedbackResponse } from '../../components/FeedbackResponse';
 
 import { UserContext } from '../../contextApp/userContext';
+import { Link } from 'react-router-dom';
 
 interface IRespostas {
   id: number;
@@ -26,7 +27,7 @@ interface IArrString extends String {
 
 export const Feedback = () => {
 
-  const { nota, ipServer } = useContext(UserContext);
+  const { nota, ipServer, cliente } = useContext(UserContext);
 
   const [divRespostas, setDivRespostas] = useState<string[]>([]);
   const [respostas, setRespostas] = useState<IRespostas[]>(
@@ -93,6 +94,7 @@ export const Feedback = () => {
         '
       >
         <h2>Nota: {nota}</h2>
+        <h3>Cliente: {cliente}</h3>
         <br />
         <h2>Ip: {ipServer}</h2>
         {
@@ -118,6 +120,38 @@ export const Feedback = () => {
           )
         }
       </div>
+      <br></br>
+      <hr />
+      <a href="http://127.0.0.1:5173/sliders"
+        className='
+          w-20
+          h-12
+          //block
+          text-center
+          border-[2px]
+          border-black
+          rounded-2xl
+          bg-[blue]
+          font-bold
+          text-white
+        '
+       >Enviar</a>
+      {/* <Link
+        className='
+          w-20
+          h-12
+          //block
+          text-center
+          border-[2px]
+          border-black
+          rounded-2xl
+          bg-[blue]
+          font-bold
+          text-white
+          
+        '
+        to='/'
+       >Enviar</Link> */}
     </div>
   )
 }

@@ -91,12 +91,12 @@ export const Home = () => {
   }, [ipServidorNps])
 
 
-  console.log("Numero da filial: ", numFilial)
-  console.log("Numero de IP do servidor: ", ipServidorNps)
-  console.log("Tamanho do IP do servidor: ", ipServidorNps.length)
-  console.log("IP do caixa: ", ipCaixa);
-  console.log("IP do caixa TAMANHO: ", ipCaixa.length);
-  console.log("IP do caixa TYPE: ", typeof ipCaixa);
+  // console.log("Numero da filial: ", numFilial)
+  // console.log("Numero de IP do servidor: ", ipServidorNps)
+  // console.log("Tamanho do IP do servidor: ", ipServidorNps.length)
+  // console.log("IP do caixa: ", ipCaixa);
+  // console.log("IP do caixa TAMANHO: ", ipCaixa.length);
+  // console.log("IP do caixa TYPE: ", typeof ipCaixa);
   console.log("### IpServer Context: ", ipServer);
 
   return (
