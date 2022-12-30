@@ -5,8 +5,8 @@ import { UserContext } from '../../contextApp/userContext';
 
 
 // const socket = io();
-// const socket = io("http://192.168.1.100:4004")
-const socket = io("http://10.1.5.217:4008")
+const socket = io("http://192.168.1.104:4008")
+// const socket = io("http://10.1.5.217:4008")
 
 
 export const Sliders = () => {
@@ -38,13 +38,13 @@ export const Sliders = () => {
     // console.log(String(isConnected));
     setIsConnected(res.flag);
     setCliente(res.cliente)
-    
+
     // socket.emit("ws-disconnect", {flag: true});
     if (res.flag) {
       socket.close();
     } else {
       socket.connect();
-    } 
+    }
   })
 
   // socket.emit("ws-disconnect", {flag: true});
@@ -59,7 +59,11 @@ export const Sliders = () => {
         && <Navigate to="/nps" replace={true} />
       }
 
-      <h1>Sliders</h1>
+      <h1
+        className='
+          text-9xl
+        '
+      >{`<`} Sliders {`>`}</h1>
       {/* {goPage && <Navigate to="/nps" replace={true} />} */}
       {/* <button
         onClick={() => setInterval(() => setGoPage(prev => !prev), 200)}

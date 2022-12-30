@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../../contextApp/userContext'
 
 export const Header = () => {
 
-  let cliente = "Fulano"
+  const [nomeCliente, setNomeCliente] = useState<string>("");
+  const { cliente } = useContext(UserContext);
+
+  useEffect(() => {
+    setNomeCliente(prev => {
+      if (cliente.length > 0) {
+        prev = `${cliente}, `
+        return prev;
+      } else {
+        prev = "";
+        return prev;
+      }
+    })
+  }, [cliente])
 
   return (
 
@@ -28,7 +42,8 @@ export const Header = () => {
       '
     >
       <p>Logo da Acal</p>
-      <p>Olá {cliente}, seja bem vindo!</p>
+      {/* <p>Olá{nomeCliente == "" && nomeCliente}, seja bem vindo!</p> */}
+      <p>Olá, {nomeCliente} seja bem vindo!</p>
     </div>
   )
 }

@@ -122,7 +122,7 @@ export const Feedback = () => {
       </div>
       <br></br>
       <hr />
-      <a href="http://127.0.0.1:5173/sliders"
+      {/* <a href=" http://localhost:5173/sliders"
         className='
           w-20
           h-12
@@ -135,8 +135,8 @@ export const Feedback = () => {
           font-bold
           text-white
         '
-       >Enviar</a>
-      {/* <Link
+      >Enviar</a> */}
+      <Link
         className='
           w-20
           h-12
@@ -150,8 +150,8 @@ export const Feedback = () => {
           text-white
           
         '
-        to='/'
-       >Enviar</Link> */}
+        to='/congratulation'
+      >Enviar</Link>
     </div>
   )
 }

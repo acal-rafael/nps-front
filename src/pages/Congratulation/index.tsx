@@ -5,7 +5,7 @@ import congratulation from "../../../public/images/congratulation.gif"
 export const Congratulation = () => {
   return <>
     {setTimeout(() => {
-      window.location.href = "https://google.com"
+      window.location.href = "/sliders"
     }, 5000)}
     <img src={congratulation} width={400} height={400} />
   </>
