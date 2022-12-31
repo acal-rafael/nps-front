@@ -97,7 +97,7 @@ export const Home = () => {
   // console.log("IP do caixa: ", ipCaixa);
   // console.log("IP do caixa TAMANHO: ", ipCaixa.length);
   // console.log("IP do caixa TYPE: ", typeof ipCaixa);
-  console.log("### IpServer Context: ", ipServer);
+  // console.log("### IpServer Context: ", ipServer);
 
   return (
     <div

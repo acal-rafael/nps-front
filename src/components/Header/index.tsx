@@ -7,8 +7,6 @@ export const Header = () => {
   return (
 
     <div
-
-
       className='
         w-[80%]
         m-auto
@@ -24,11 +22,10 @@ export const Header = () => {
         //bg-cover
         //bg-no-repeat 
         //bg-center 
-
       '
     >
-      <p>Logo da Acal</p>
-      <p>Olá {cliente}, seja bem vindo!</p>
+      <p>Logo da {`Empresa X`}</p>
+      <p>Olá, {cliente.length > 0 ? `${cliente}, ` : ""} seja bem vindo á {`Empresa X`}</p>
     </div>
   )
 }

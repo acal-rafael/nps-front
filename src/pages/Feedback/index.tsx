@@ -1,23 +1,17 @@
 import React, { SetStateAction, useContext, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
-import { Header } from '../../components/Header';
 import { FeedbackResponse } from '../../components/FeedbackResponse';
 
 import { UserContext } from '../../contextApp/userContext';
 import { Link } from 'react-router-dom';
+import { Sliders } from '../Sliders';
 
 interface IRespostas {
   id: number;
   msg: string;
   color: string;
 }[]
-
-
-// interface IDivRespostas<T> {
-//   divRespostas?: string;
-//   setDivRespostas: React.Dispatch<SetStateAction<T>>;
-// }[];
 
 interface IArrString extends String {
   msg: string;
@@ -27,6 +21,7 @@ interface IArrString extends String {
 
 export const Feedback = () => {
 
+  const navigate = useNavigate();
   const { nota, ipServer, cliente } = useContext(UserContext);
 
   const [divRespostas, setDivRespostas] = useState<string[]>([]);
@@ -44,15 +39,9 @@ export const Feedback = () => {
 
   const adicionaDivRespostas = (id: number) => {
     let { msg } = respostas.filter(resposta => resposta.id == id)[0];
-    // console.log(resp);
-    // console.log(typeof resp);
-
-    // let { msg } = resp[0];
     msg = msg.concat(", ");
 
     setDivRespostas(prevMsg => [...prevMsg, msg])
-
-    // setDivRespostas(resp.);
   }
 
   return (
@@ -152,6 +141,12 @@ export const Feedback = () => {
         '
         to='/sliders'
        >Enviar</Link>
+       <button 
+        // onClick={() => navigate("/sliders")}
+        onClick={() =><Navigate to="\sliders" replace={true} />}
+       >
+        Enviar
+       </button>
     </div>
   )
 }

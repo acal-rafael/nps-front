@@ -4,38 +4,35 @@ import io from 'socket.io-client';
 import { UserContext } from '../../contextApp/userContext';
 
 
-// const socket = io();
-// const socket = io("http://192.168.1.100:4004")
-// const socket = io("http://10.1.5.217:4008")
-const socket = io("http://10.40.10.1:4008")   // conexão vpn
-
-
 export const Sliders = () => {
 
-  const [isConnected, setIsConnected] = useState<boolean>(false);
+  // const socket = io("http://192.168.1.100:4004")
+  // const socket = io("http://10.1.5.217:4008")
+  const socket = io("http://10.40.10.1:4008", {
+    autoConnect: true,
+  })   // conexão vpn
 
+
+  const [isFlag, setIsFlag] = useState<boolean>(false);
+  const [isConnected, setIsConnected] = useState<boolean>(socket.connected);
   const { setCliente } = useContext(UserContext);
 
-
   socket.on("ws-response", (res) => {
-    console.log("Cliente de ", res);
-
-    setIsConnected(res.flag);
-    setCliente(res.cliente)
-    
-    if (res.flag) {
-      socket.close();
-    } else {
-      socket.connect();
-    } 
+    if (res.flag) {     
+      setIsFlag(true);  
+      console.log("Connexão fechada com o back: ", socket.active)
+      socket.close(); 
+    }
+     else {
+      console.log("Connexão aberta com o back: ", socket.active)
+    }
   })
 
   return (
     <div>
-      {isConnected
+      {isFlag
         && <Navigate to="/nps" replace={true} />
       }
-
       <h1>Sliders</h1>
     </div>
   )
