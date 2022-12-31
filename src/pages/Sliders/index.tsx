@@ -28,11 +28,17 @@ export const Sliders = () => {
     }
   })
 
+  // console.log("isFlag: ", isFlag)
+  // console.log("socket.connected: ", isConnected)
+  // console.log("socket.active: ", socket.active)
+
+
   return (
     <div>
       {isFlag
         && <Navigate to="/nps" replace={true} />
       }
+
       <h1>Sliders</h1>
     </div>
   )
