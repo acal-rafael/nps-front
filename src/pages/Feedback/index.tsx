@@ -49,11 +49,14 @@ export const Feedback = () => {
       className='
         flex
         flex-col
+        flex-1
+        items-center
+        justify-center
       '
     >
       <div
         className='
-          w-100
+          w-[90%]
           h-[300px]
           mb-8
           border-[1px]
@@ -78,36 +81,46 @@ export const Feedback = () => {
       <div
         className='
           flex
+          flex-col
           gap-4
           
         '
       >
-        <h2>Nota: {nota}</h2>
-        <h3>Cliente: {cliente}</h3>
-        <br />
-        <h2>Ip: {ipServer}</h2>
-        {
-          respostas.map((resp) => <FeedbackResponse key={resp.id}
-            className={`
-                  border-[1px]
-                  rounded-xl
-                  p-2
-                  
-                  hover:cursor-pointer
+        <div>
+          <h2>Nota: {nota}</h2>
+          <h2>Cliente: {cliente}</h2>
+          <h2>Ip: {ipServer}</h2>
+        </div>
+        <div
+          className='
+            flex 
+            flex-1
+            gap-2  
+          '
+        >
+          {
+            respostas.map((resp) => <FeedbackResponse key={resp.id}
+              className={`
+                    border-[1px]
+                    rounded-xl
+                    p-2
+                    
+                    hover:cursor-pointer
 
-                `}
+                  `}
 
-            style={{
-              backgroundColor: `${resp.color}`,
-              color: "white"
-            }}
+              style={{
+                backgroundColor: `${resp.color}`,
+                color: "white"
+              }}
 
-            feed={resp.msg}
+              feed={resp.msg}
 
-            onClick={() => adicionaDivRespostas(resp.id)}
-          />
-          )
-        }
+              onClick={() => adicionaDivRespostas(resp.id)}
+            />
+            )
+          }
+        </div>
       </div>
       <br></br>
       <hr />
@@ -129,6 +142,7 @@ export const Feedback = () => {
         className='
           w-20
           h-12
+          p-2
           //block
           text-center
           border-[2px]
@@ -139,14 +153,14 @@ export const Feedback = () => {
           text-white
           
         '
-        to='/sliders'
-       >Enviar</Link>
-       <button 
+        to='/congratulation'
+      >Enviar</Link>
+      {/* <button
         // onClick={() => navigate("/sliders")}
-        onClick={() =><Navigate to="\sliders" replace={true} />}
-       >
+        onClick={() => <Navigate to="\sliders" replace={true} />}
+      >
         Enviar
-       </button>
+      </button> */}
     </div>
   )
 }

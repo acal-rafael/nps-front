@@ -6,11 +6,13 @@ import { UserContext } from '../../contextApp/userContext';
 
 export const Sliders = () => {
 
-  // const socket = io("http://192.168.1.100:4004")
-  // const socket = io("http://10.1.5.217:4008")
-  const socket = io("http://10.40.10.1:4008", {
+  const socket = io("http://192.168.1.106:4008", {
     autoConnect: true,
-  })   // conexão vpn
+  })
+  // const socket = io("http://10.1.5.217:4008")
+  // const socket = io("http://10.40.10.1:4008", {
+  //   autoConnect: true,
+  // })   // conexão vpn
 
 
   const [isFlag, setIsFlag] = useState<boolean>(false);
@@ -18,17 +20,20 @@ export const Sliders = () => {
   const { setCliente } = useContext(UserContext);
 
   socket.on("ws-response", (res) => {
-    if (res.flag) {     
-      setIsFlag(true);  
-      console.log("Connexão fechada com o back: ", socket.active)
-      socket.close(); 
+    if (res.flag) {
+      setIsFlag(true);
+      // console.log(socket.active)
+      setCliente(prev => prev = res.cliente)
+      console.log("Connexão FECHADA com o back!")
+      socket.close();
     }
-     else {
-      console.log("Connexão aberta com o back: ", socket.active)
+    else {
+      // console.log(socket.active)
+      console.log("Connexão ABERTA com o back!")
     }
   })
 
-  // console.log("isFlag: ", isFlag)
+  console.log("isFlag: ", isFlag)
   // console.log("socket.connected: ", isConnected)
   // console.log("socket.active: ", socket.active)
 
@@ -39,7 +44,11 @@ export const Sliders = () => {
         && <Navigate to="/nps" replace={true} />
       }
 
-      <h1>Sliders</h1>
+      <p
+        className='
+          text-9xl
+        '
+      >{`< `} Sliders {` >`}</p>
     </div>
   )
 }

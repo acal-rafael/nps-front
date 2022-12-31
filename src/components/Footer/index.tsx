@@ -27,7 +27,7 @@ export const Footer = () => {
       //border-[1px]
       '
     >
-      <p>IP do back: {ipServer}</p>
+      {/* <p>IP do back:  {ipServer.length < 0 ? `0.0.0.${ipServer[ipServer.length - 1]}` : "0.0.0.0"}</p> */}
       <p>Footer</p>
     </div>
   )
