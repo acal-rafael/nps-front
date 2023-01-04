@@ -3,11 +3,11 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 interface IButtonProps {
   cor: string;
-  nota: string;
-  setNota: Function;
+  notaClicada: string;
+  setNotaClicada: Function;
 }
 
-export const Buttons = ({ cor, nota, setNota }: IButtonProps) => {
+export const Buttons = ({ cor, notaClicada, setNotaClicada }: IButtonProps) => {
   const navigate = useNavigate()
   const [corBtn, setCorBtn] = useState<string>("")
 
@@ -16,7 +16,7 @@ export const Buttons = ({ cor, nota, setNota }: IButtonProps) => {
   }, [cor])
 
   return <button
-    onClick={() => setNota((prev: string) => prev = nota)}
+    onClick={() => setNotaClicada((prev: string) => prev = notaClicada)}
 
     style={{
       backgroundColor: corBtn
@@ -31,7 +31,7 @@ export const Buttons = ({ cor, nota, setNota }: IButtonProps) => {
         rounded-full ml-2 mt-2
     '
   >
-    {nota}
+    {notaClicada}
   </button>
 
 }

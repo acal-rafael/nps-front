@@ -3,18 +3,34 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Body } from '../components/Body'
 
-import { Home } from '../pages/Home'
+import { Nps } from '../pages/Nps'
 import { Feedback } from '../pages/Feedback'
 import { Congratulation } from '../pages/Congratulation'
 import { DivCircleInto } from '../pages/Teste/DivCircleInto'
 import { Teste } from '../pages/Teste'
+import { Home } from '../pages/Home'
+
+// import { ProviderContext } from '../contextApp/userContext'
+import { Sliders } from '../pages/Sliders'
 
 export const Router = () => {
 
   return (
+
+    // <ProviderContext>
     <Routes>
-      <Route path='/:urlhash' element={<Body>
+      <Route path='/' element={<Body>
         <Home />
+      </Body>}
+      />
+
+      <Route path='/sliders' element={<Body>
+        <Sliders />
+      </Body>}
+      />
+
+      <Route path='/nps' element={<Body>
+        <Nps />
       </Body>}
       />
 
@@ -39,5 +55,7 @@ export const Router = () => {
       />
 
     </Routes>
+    // </ProviderContext>
+
   )
 }
