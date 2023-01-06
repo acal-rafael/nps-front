@@ -14,13 +14,13 @@ export const Sliders = () => {
   const [isFlag, setIsFlag] = useState<boolean>(false);
   const { setCliente } = useContext(UserContext);
   
-  const settings = {
-    dots: true,
-    infinite: true,
-    //speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   //speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1
+  // };
 
 
   useEffect(() => {
@@ -39,32 +39,34 @@ export const Sliders = () => {
   }
 
 
-  // const socket = io("http://10.1.5.67:4008", {
-  //   autoConnect: true,
-  // })
+  const socket = io("http://10.1.5.67:4004", {
+    autoConnect: true,
+  })
 
 
-  // socket.on("ws-response", (res) => {
-  //   if (res.flag) {
-  //     socket.close();
+  socket.on("ws-response", (res) => {
+    let urlHash = res.hashlink;
+    const urlString = window.atob(urlHash).split("/");
+    console.log(urlString);
+
+    if (urlString[0].length > 0) {
+      socket.close();
       
-  //     let urlHash = res.hashlink;
-  //     const urlString = window.atob(urlHash).split("/");
-  //     console.log(urlString)
-  //     console.log(urlString[0])
+      console.log(urlString)
+      console.log("Usuario: ", urlString[0])
 
-  //     setIsFlag(true);
+      setIsFlag(true);
     
-  //     setCliente(prev => prev = urlString[0])
-  //     console.log("Connexão FECHADA com o back 2!")
+      setCliente(prev => prev = urlString[0])
+      console.log("Connexão FECHADA com o back 2!")
       
-  //   }
-  //   else {
-  //     // console.log(socket.active)
-  //     console.log("Connexão ABERTA com o back 2!")
-  //     console.log("Flag: ", res.flag)
-  //   }
-  // })
+    }
+    else {
+      // console.log(socket.active)
+      console.log("Connexão ABERTA com o back 2!")
+      // console.log("Flag: ", toString(true))
+    }
+  })
 
   // console.log("isFlag: ", isFlag)
   
