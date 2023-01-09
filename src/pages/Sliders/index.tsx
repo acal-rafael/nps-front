@@ -8,7 +8,7 @@ import { UserContext } from '../../contextApp/userContext';
 
 export const Sliders = () => {
   
-  const socket = io("http://10.40.10.1:4004", {
+  const socket = io("http://10.1.5.76:4004", {
     autoConnect: true,
   })
 
@@ -58,10 +58,7 @@ export const Sliders = () => {
       // return arrIds.data
   }
 
-  
-
-
-  socket.on("10.40.10.1", res => {
+  socket.on("10.1.5.76", res => {
     
     console.log(res);
 
