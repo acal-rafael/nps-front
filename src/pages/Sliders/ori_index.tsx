@@ -3,19 +3,14 @@ import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 import io from 'socket.io-client';
 import { api } from '../../services/api';
 import { UserContext } from '../../contextApp/userContext';
-// import { ImageSlider } from './ImageSlider';
+import { ImageSlider } from './ori_ImageSlider';
 
 
 export const Sliders = () => {
   
-  const socket = io("http://10.1.5.76:4004", {
-    autoConnect: true,
-  })
-
-
   const [idImg, setIdImg] = useState<Array<string>>([""]);
   const [active, setActive] = useState<boolean>(false);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  
   const [isFlag, setIsFlag] = useState<boolean>(false);
   const { setCliente } = useContext(UserContext);
   
@@ -30,22 +25,7 @@ export const Sliders = () => {
 
   useEffect(() => {
     getImagens()
-    setCurrentIndex(1);
   }, []) 
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (currentIndex === idImg.length -1) {
-        setCurrentIndex(0);
-        // console.log("IF: ", currentIndex);
-      } else {
-        setCurrentIndex(currentIndex + 1);
-        // console.log("IF: ", currentIndex);
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [currentIndex])
 
   const getImagens = () => {
      api.get("imagens")
@@ -58,23 +38,16 @@ export const Sliders = () => {
       // return arrIds.data
   }
 
-  socket.on("10.1.5.76", res => {
-    
-    console.log(res);
 
-    // if (JSON.parse(res).pedido == '53685') {
-    //   socket.close();
-    //   setIsFlag(true);
-    //   console.log("Connexão FECHADA com o back 2!")
-    // } else {
-    //   console.log("Connexão ABERTA com o back 2!")
-    //   socket.close();
-    // }
+  const socket = io("http://10.40.10.1:4004", {
+    autoConnect: true,
+  })
 
-    
-    let urlHash = res.hash;
+
+  socket.on("server-sending", (res) => {
+    let urlHash = res;
     let flag = res.flag;
-    const urlString = atob(urlHash).split("/");
+    const urlString = window.atob(urlHash).split("/");
     console.log(urlString);
 
     // if (urlString[0].length > 0) {
@@ -94,13 +67,11 @@ export const Sliders = () => {
       // console.log(socket.active)
       console.log("Connexão ABERTA com o back 2!")
       // console.log("Flag: ", toString(true))
-      socket.close();
     }
   })
 
   // console.log("isFlag: ", isFlag)
-  console.log(`https://lojaacal.vteximg.com.br/arquivos/ids/${idImg[currentIndex]}`)
-  console.log("Socket: ", socket.connected)
+  
 
   return (
     <div>
@@ -108,20 +79,9 @@ export const Sliders = () => {
         && <Navigate to="/nps" replace={true} />
       }
 
+      { }
       <div>
-        <img
-        className={`
-            w-screen
-            h-screen
-            bg-cover
-            //bg-no-repeat
-      
-            border-[1px]
-            border-[black]
-          `}
-        src={`https://lojaacal.vteximg.com.br/arquivos/ids/${idImg[currentIndex]}`}
-        alt=""
-      />
+        <ImageSlider ids={idImg} />
       </div>
       
     </div>
